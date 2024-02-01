@@ -11,7 +11,7 @@ class UpdateAnnouncementsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateAnnouncementsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'required|min:10|max:255',
+            'descreption'=>'required|string',
+            'skills'=>'required|string',
+            'companie_id'=>'required|integer',
         ];
     }
 }

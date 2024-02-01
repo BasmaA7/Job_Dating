@@ -26,7 +26,6 @@ class AnnouncementsController extends Controller
      */
     public function create()
     {
-
         return view('announcements.create');
     }
 
@@ -47,17 +46,18 @@ class AnnouncementsController extends Controller
    
 
    
-    public function edit(Announcements $announcements)
-    {
-        return view('announcements.edit');
-    }
+     public function edit(Announcements $announcement)
+     {
+         return view('announcements.edit', compact('announcement'));
+     }
+     
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAnnouncementsRequest $request, Announcements $announcements)
+    public function update(UpdateAnnouncementsRequest $request, Announcements $announcement)
     {
-        $announcements->update($request->validated());
+        $announcement->update($request->validated());
         return redirect()->route('announcements.index')
                          ->with('seccess','Announcement update successfully');
     }
