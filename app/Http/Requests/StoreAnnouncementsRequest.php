@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use SebastianBergmann\Type\TrueType;
 
 class StoreAnnouncementsRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreAnnouncementsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return True;
     }
 
     /**
@@ -22,7 +23,10 @@ class StoreAnnouncementsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'required|min:10|max:255',
+            'descreption'=>'required|string',
+            'skills'=>'required|string',
+            'companie_id'=>'required|integer',
         ];
     }
 }

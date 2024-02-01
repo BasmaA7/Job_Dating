@@ -21,6 +21,7 @@ class AnnouncementsFactory extends Factory
             'descreption'=>fake()->text(),
             'skills'=>fake()->text(),
             'companie_id'=>fake()->numberBetween(1,10),
+            
         ];
     }
 }

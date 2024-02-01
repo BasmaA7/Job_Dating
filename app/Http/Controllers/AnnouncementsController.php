@@ -15,6 +15,7 @@ class AnnouncementsController extends Controller
     public function index()
     {
         $announcements = Announcements::latest()->paginate(5);
+        
         return view('announcements.index',compact('announcements'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
        
