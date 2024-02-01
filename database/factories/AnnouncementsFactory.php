@@ -17,7 +17,10 @@ class AnnouncementsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=>fake()->name(),	
+            'descreption'=>fake()->text(),
+            'skills'=>fake()->text(),
+            'companie_id'=>fake()->numberBetween(1,10),
         ];
     }
 }

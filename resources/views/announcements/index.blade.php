@@ -1,1 +1,2 @@
-@extends ('announcements.nav')
+@include ('assets.nav')
+ hello
