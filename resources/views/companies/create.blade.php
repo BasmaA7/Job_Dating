@@ -1,4 +1,4 @@
-@include('assets.nav')
+@include('layouts.app')
 
 <div>
   @if ($errors->any())

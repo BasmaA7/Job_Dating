@@ -1,5 +1,5 @@
  
-@include('assets.nav')
+@include('layouts.app')
 
 <main class="mt-14 p-12 ml-0 smXl:ml-64 dark:border-gray-700 ">
  <!--Company-->
