@@ -1,7 +1,7 @@
  
 @include('layouts.app')
 
-   <main class="mt-14 p-12 ml-0 smXl:ml-64 dark:border-gray-700 ">
+   <main class="mt-8 ml-0 smXl:ml-64 dark:border-gray-700 ">
     <!-- Announcement-->
     <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
         <h1 class="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
@@ -41,12 +41,18 @@
                                     <td class="px-4 py-3 text-center">{{$a->name}}</td>
                                     <td class="px-4 py-3 text-center"> {{$a->descreption}} </td>
                                     <td class="px-4 py-3 text-center">{{$a->skills}}</td>
-                                    <td class="px-4 py-3 text-center">{{$a->companie_id}}</td>
+                                    <td>
+                                        @foreach($companies as $company)
+                                            @if($company->id == $a->companie_id)
+                                                {{ $company->name }}
+                                            @endif
+                                        @endforeach
+                                    </td>
 
                                     <td class="px-4 py-3 text-center">
-                                        <form action="{{route('announcements.destroy', $a->id) }}" method="POST">
-
                                         <a href="{{route('announcements.edit',$a->id)}}">Edit</a>
+
+                                        <form action="{{route('announcements.destroy', $a->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE') 
                                             <button type="submit" class="bg-red-500">Supprimer</button>
@@ -59,6 +65,7 @@
                        </tbody>
                        @endforeach
                     </table>
+                    {{$announcements->links()}}
                 </div>
 
 

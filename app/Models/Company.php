@@ -13,4 +13,7 @@ class Company extends Model
         "name",
         "description",
     ];
+    public function announcements(){
+        return $this->hasMany(Announcements::class);
+    }
 }

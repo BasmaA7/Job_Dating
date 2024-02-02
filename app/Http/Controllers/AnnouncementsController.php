@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Announcements;
 use App\Http\Requests\StoreAnnouncementsRequest;
 use App\Http\Requests\UpdateAnnouncementsRequest;
+use App\Models\Company;
 use Illuminate\View\ViewException;
 
 class AnnouncementsController extends Controller
@@ -14,9 +15,10 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
+
         $announcements = Announcements::latest()->paginate(5);
-        
-        return view('announcements.index',compact('announcements'))
+        $companies= Company::all();
+        return view('announcements.index',compact('announcements','companies'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
        
     }
@@ -26,7 +28,9 @@ class AnnouncementsController extends Controller
      */
     public function create()
     {
-        return view('announcements.create');
+
+        $companies= Company::all();
+        return view('announcements.create',compact('companies'));
     }
 
     /**
@@ -65,9 +69,9 @@ class AnnouncementsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Announcements $announcements)
+    public function destroy(Announcements $announcement)
     {
-        $announcements->delete();
+        $announcement->delete();
          
         return redirect()->route('announcements.index')
                         ->with('success','announcements deleted successfully');

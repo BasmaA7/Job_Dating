@@ -1,14 +1,10 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Annoucement</title>
+  <title> Youcode </title>
   <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
@@ -29,11 +25,11 @@
         <div class="flex items-center space-x-6 rtl:space-x-reverse pr-4 ">
           <button type="button" class="text-white bg-orange-400 hover:bg-red-800 focus:outline-none focus:ring-4 
         focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">          
-          <a href="#" class="text-sm  text-white dark:text-blue-500 hover:underline">SignUp</a>
+          <a href="/register" class="text-sm  text-white dark:text-blue-500 hover:underline">SignUp</a>
 </button>
         <button type="button" class="text-white bg-orange-400  hover:bg-red-800 focus:outline-none focus:ring-4 
         focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">          
-          <a href="#" class="text-sm  text-white dark:text-blue-500 hover:underline">Login</a>
+          <a href="/login" class="text-sm  text-white dark:text-blue-500 hover:underline">Login</a>
 </button>
         
 
@@ -46,10 +42,10 @@
   <section>
    <div class="bg-red-500 ">
     
-    <img class="rounded-t-lg" src="https://media.licdn.com/dms/image/D4E22AQHSeN28nXDGUA/feedshare-shrink_2048_1536/0/1705787163435?e=1709769600&v=beta&t=dnyjSUdP-KuKOcJSej3CTtyDtW2TU4NmnXhXZoAXiTw" alt="">
+    <img class="rounded-t-lg" src="" alt="">
 </div>
   
-<div class="flex flex-wrap">
+<div class="grid grid-rows-4 grid-flow-col gap-4">
   @foreach($announcements as $announcement)
    <div class="max-w-sm bg-white  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     

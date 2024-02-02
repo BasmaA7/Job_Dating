@@ -17,7 +17,7 @@ class Announcements extends Model
 
     ];
 
-    // public function company(){
-
-    // }
+    public function company(){
+      return $this->belongsTo(Company::class);
+    }
 }

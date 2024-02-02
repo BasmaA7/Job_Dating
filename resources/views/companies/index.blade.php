@@ -1,7 +1,7 @@
  
 @include('layouts.app')
 
-<main class="mt-14 p-12 ml-0 smXl:ml-64 dark:border-gray-700 ">
+<main class="mt-8 ml-0 smXl:ml-64 dark:border-gray-700 ">
  <!--Company-->
  <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
      <h1 class="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
@@ -42,9 +42,9 @@
                             
 
                                  <td class="px-4 py-3 text-center">
-                                     <form action="{{route('companies.destroy', $c->id) }}" method="POST">
+                                    <a href="{{route('companies.edit',$c->id)}}">Edit</a>
 
-                                     <a href="{{route('companies.edit',$c->id)}}">Edit</a>
+                                     <form action="{{route('companies.destroy', $c->id) }}" method="POST">
                                          @csrf
                                          @method('DELETE') 
                                          <button type="submit" class="bg-red-500">Supprimer</button>
@@ -55,8 +55,11 @@
                              </tr>
 
                     </tbody>
+
                     @endforeach
                  </table>
+                 {{$companies->links()}}
+
              </div>
 
 

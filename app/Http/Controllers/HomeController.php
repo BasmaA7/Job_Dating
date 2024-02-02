@@ -12,6 +12,6 @@ class HomeController extends Controller
     {
         $announcements = Announcements::all();
 
-        return view('layouts.home', compact('home', 'announcements'));
+        return view('home', compact('home', 'announcements'));
     }
 }
