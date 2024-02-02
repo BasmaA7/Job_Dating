@@ -18,14 +18,24 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home']);
 
-Route::resource('announcements', AnnouncementsController::class);
-Route::resource('companies',CompanyController::class);
+Route::resource('announcements', AnnouncementsController::class)->names('announcements');
+Route::resource('companies', CompanyController::class)->names('companies');
+
+// Route::resource('',Controller::class);
 
 // route::resource('Home',HomeController::class);
 // route::resource('register',RegisterController::class);
 // route::resource('login',LoginController::class);
 
-Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

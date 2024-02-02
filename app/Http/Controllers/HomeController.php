@@ -1,17 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Announcements;
-use App\Models\Home;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(Home $home)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        // return view('home');
         $announcements = Announcements::all();
 
-        return view('home', compact('home', 'announcements'));
+        return view('/',compact('announcements'));
+    }
+    
+    public function home()
+    {   
+        $announcements = Announcements::all();
+
+        return view('home',compact('announcements'));
     }
 }

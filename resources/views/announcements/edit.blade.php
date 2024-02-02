@@ -13,35 +13,36 @@
 @endif
 </div>
 
+<div class="container  bg-body-secondary">
 <form action="{{ route('announcements.update',$announcement->id) }}" method="POST" >
-   @csrf
+  @csrf
   @method('PUT')
-  <h1 class="text-2xl font-bold dark:text-white pb-4">Edit Announcement</h1>
-  <div class="mb-5">
-    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name :</label>
-    <input type="text" name="name" value="{{$announcement->name}}"
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <div class="bg-blue-500 hover:bg-blue-700 inline-block  text-white font-bold py-2 px-4 rounded-full cursor-pointer">
+    <div class="bg-blue-500 hover:bg-blue-700 inline-block  text-white font-bold py-2 px-4 rounded-full cursor-pointer">
+      <a href="{{route('announcements.index')}}" class="btn btn-primary"><- Back</a>
   </div>
-  <div class="mb-5">
-    <label for="discpreption" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descreption :</label>
-    <textarea type="text" name="descreption" 
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-       {{$announcement->descreption }} </textarea>
-        
+    <h1 class="text-2xl font-bold text-center mb-6 text-danger dark:text-white">Edit Announcement</h1>
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class=" text-success-emphasis form-label text-success-emphasis"> Name :</label>
+    <input type="text" name="name"  value="{{$announcement->name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label text-success-emphasis">Description :</label>
+    <textarea name="description" class="form-control" id="exampleInputPassword1">{{$announcement->descreption }} </textarea>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class=" text-success-emphasis form-label "> Skills :</label>
+    <textarea name="description" class="form-control" id="exampleInputPassword1">  {{$announcement->skills }} </textarea>
+  </div>
+  <td>
+    <select name="company_id" class="form-control">
+        @foreach($companies as $company)
+            <option value="{{ $company->id }}" {{ $company->id == $announcement->company_id ? 'selected' : '' }}>
+                {{ $company->name }}
+            </option>
+        @endforeach
+    </select>
+</td>
 
-  </div>
- 
-  <div>
-    <label for="skills" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">skills :</label>
-    <input type="text" name="skills" value="{{$announcement->skills }}"    
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  </div>
-  <div>
-    <label for="companieId" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Companie_ID :</label>
-    <input type="text" name="companie_id"value="{{$announcement->companie_id }}"    
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  </div>
-  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-

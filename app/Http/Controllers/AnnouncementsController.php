@@ -52,7 +52,8 @@ class AnnouncementsController extends Controller
    
      public function edit(Announcements $announcement)
      {
-         return view('announcements.edit', compact('announcement'));
+        $companies = Company::all();
+         return view('announcements.edit', compact('announcement','companies'));
      }
      
 
@@ -61,6 +62,7 @@ class AnnouncementsController extends Controller
      */
     public function update(UpdateAnnouncementsRequest $request, Announcements $announcement)
     {
+
         $announcement->update($request->validated());
         return redirect()->route('announcements.index')
                          ->with('seccess','Announcement update successfully');
