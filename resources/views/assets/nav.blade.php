@@ -20,11 +20,9 @@
                     <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
                 </li>
                 <li>
-                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Company</a>
+                    <a href=" /companies" class="text-gray-900 dark:text-white hover:underline">Company</a>
                 </li>
-                <li>
-                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Team</a>
-                </li>
+               
                 <li>
                     <a href="#" class="text-gray-900 dark:text-white hover:underline">Features</a>
                 </li>
