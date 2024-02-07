@@ -22,7 +22,9 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
+                    
                 </a>
+                @if (Auth::user())
                 <a class="navbar-brand" href="{{ route('companies.index') }}">
                     Companies
                 </a>
@@ -30,7 +32,7 @@
                 <a class="navbar-brand" href="{{ route('announcements.index') }}">
                     Announcements
                 </a>
-                
+                @endif
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

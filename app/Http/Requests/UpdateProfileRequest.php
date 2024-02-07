@@ -3,16 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use SebastianBergmann\Type\TrueType;
 
-class StoreAnnouncementsRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return True;
+        return false;
     }
 
     /**
@@ -23,11 +22,7 @@ class StoreAnnouncementsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|min:10|max:255',
-            'descreption'=>'required|string',
-            'skills'=>'required|string',
-            'companie_id'=>'required|integer',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            //
         ];
     }
 }

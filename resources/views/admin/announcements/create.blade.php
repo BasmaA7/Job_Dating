@@ -1,3 +1,6 @@
+
+
+
 @include('layouts.app')
 
 <div>
@@ -48,7 +51,9 @@
           @endforeach
       </select>
   </div>
-  
+  <div class="mb-3 ">
+  <input class="form-control border custom-border-color" type="file" name="image" accept="image/*">
+</div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 

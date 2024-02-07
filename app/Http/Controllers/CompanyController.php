@@ -15,7 +15,7 @@ class CompanyController extends Controller
     {
         $companies = Company::latest()->paginate(5); 
         // dd($companies);
-        return view('companies.index',compact('companies'))
+        return view('admin.companies.index',compact('companies'))
                         ->with('i', (request()->input('page', 1) - 1) * 5);
            
         
@@ -26,7 +26,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-       return view('companies.create');
+       return view('admin.companies.create');
     }
 
     /**
@@ -54,7 +54,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('companies.edit', compact('company'));
+        return view('admin.companies.edit', compact('company'));
     }
 
     /**

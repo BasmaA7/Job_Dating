@@ -28,14 +28,14 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label text-success-emphasis">Description :</label>
-    <textarea name="description" class="form-control" id="exampleInputPassword1">{{$announcement->descreption }} </textarea>
+    <textarea name="descreption" class="form-control" id="exampleInputPassword1">{{$announcement->descreption }} </textarea>
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class=" text-success-emphasis form-label "> Skills :</label>
-    <textarea name="description" class="form-control" id="exampleInputPassword1">  {{$announcement->skills }} </textarea>
+    <textarea name="skills" class="form-control" id="exampleInputPassword1">  {{$announcement->skills }} </textarea>
   </div>
   <td>
-    <select name="company_id" class="form-control">
+    <select name="companie_id" class="form-control">
         @foreach($companies as $company)
             <option value="{{ $company->id }}" {{ $company->id == $announcement->company_id ? 'selected' : '' }}>
                 {{ $company->name }}

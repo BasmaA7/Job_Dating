@@ -14,6 +14,7 @@ class Announcements extends Model
         "descreption",
         "skills",
         "companie_id",
+        "image",
 
     ];
 

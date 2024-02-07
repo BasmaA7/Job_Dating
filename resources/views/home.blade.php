@@ -17,7 +17,7 @@
 
   <div class=" container">
     <div class=" row">
-      <div class="col-md-6 bg-danger d-flex align-items-center">
+      <div class="col-md-6  d-flex align-items-center">
         <p>
           Are you ready to take the next step in your career?<br>
           Join us at our upcoming Job Dating event! This is a unique opportunity to connect with leading employers in various industries, explore exciting job opportunities, and showcase your skills.

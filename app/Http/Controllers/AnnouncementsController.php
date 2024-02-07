@@ -18,7 +18,7 @@ class AnnouncementsController extends Controller
 
         $announcements = Announcements::latest()->paginate(5);
         $companies= Company::all();
-        return view('announcements.index',compact('announcements','companies'))
+        return view('admin.announcements.index',compact('announcements','companies'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
        
     }
@@ -30,7 +30,7 @@ class AnnouncementsController extends Controller
     {
 
         $companies= Company::all();
-        return view('announcements.create',compact('companies'));
+        return view('admin.announcements.create',compact('companies'));
     }
 
     /**
@@ -39,7 +39,12 @@ class AnnouncementsController extends Controller
     public function store(StoreAnnouncementsRequest $request)
     {
         Announcements::create($request->validated());
-         
+        $validatedData = $request->validated();
+        
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('announcement_images', 'public');
+        $validatedData['image_path'] = $imagePath;
+    }
         return redirect()->route('announcements.index')
         ->with('success','Announcement created successfully.');
     }
@@ -53,7 +58,7 @@ class AnnouncementsController extends Controller
      public function edit(Announcements $announcement)
      {
         $companies = Company::all();
-         return view('announcements.edit', compact('announcement','companies'));
+         return view('admin.announcements.edit', compact('announcement','companies'));
      }
      
 
