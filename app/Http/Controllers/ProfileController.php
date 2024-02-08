@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
-
+use App\Models\User;
+use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     /**
@@ -13,10 +14,19 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('apprenants.profile');
+        return view('apprenants.Profile');
 
 
     }
+   
+    public function addskills(Request $request)
+{
+     
+    $user = User::findOrFail(auth()->user()->id);
+    $user->skills()->sync($request->input('skill_ids'));
+    return redirect()->route('home')
+    ->with('seccess','Announcement update successfully');
+}
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +46,7 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Profile $profile)
+    public function show(User $profile)
     {
         //
     }
@@ -44,23 +54,26 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Profile $profile)
+    public function edit( User $profile)
     {
-       
+       return view('apprenants.editProfile');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfileRequest $request, Profile $profile)
+    public function update(UpdateProfileRequest $request,User $profile)
     {
-        //
+       
+        $profile->update($request->validated());
+        return redirect()->route('Profile.index')
+                         ->with('seccess','Profile update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Profile $profile)
+    public function destroy(User $profile)
     {
         //
     }

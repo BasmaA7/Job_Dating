@@ -7,6 +7,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HistoriqueController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillController;
 use App\Models\Company;
 use Illuminate\Support\Facades\Route;
 
@@ -28,8 +29,8 @@ Auth::routes();
 
 
 
-Route::resource('announcements', AnnouncementsController::class)->names('announcements');
-Route::resource('companies', CompanyController::class)->names('companies');
+Route::resource('announcements', AnnouncementsController::class)->names('announcements')->middleware('auth');
+Route::resource('companies', CompanyController::class)->names('companies')->middleware('auth');
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -37,7 +38,10 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/companie', 'CompanyController@index');
 });
 
-Route::resource('profile',ProfileController::class);
+// Route::resource('profile',ProfileController::class);
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+Route::resource('skills',SkillController::class);
+
 Route::resource('historique',HistoriqueController::class);
 Route::middleware(['role:admin'])->group(function () {
   Route::get('/announcement', 'AnnouncementsController@index');
@@ -45,6 +49,7 @@ Route::middleware(['role:admin'])->group(function () {
 
 });
 
+Route::post('/addskills', [ProfileController::class, 'addskills']);
 
 
 // 
