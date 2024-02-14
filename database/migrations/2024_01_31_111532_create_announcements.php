@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('descreption');
-            $table->string('skills');
+            
             $table->foreignId('companie_id')->constrained();
             $table->timestamps();
         });

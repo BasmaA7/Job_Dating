@@ -29,15 +29,25 @@
     </div>
 
     <div class="row">
+      @if($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
+
       @foreach($announcements as $announcement)
       <div class="col-md-4 mb-3">
         <div class="card" style="width: 18rem;">
-          <img src="https://static.vecteezy.com/ti/vecteur-libre/p3/19902188-entreprise-nouvelles-discours-bulle-avec-megaphone-entreprise-information-annonce-vecteur-icone-vectoriel.jpg" class="card-img-top" alt="..." style="height: 150px;"> <!-- Set the desired height here -->
+          <img src="" class="card-img-top" alt="..." style="height: 150px;"> <!-- Set the desired height here -->
           <div class="card-body">
             <h1 class="card-title">{{ $announcement->name }}</h1>
             <p class="card-text">{{ $announcement->description }}</p>
             <span>Company name</span>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <form action="{{route("apply")}}" method="post" >
+              @csrf
+            <input type="hidden"  name="announcement_ids[]" value="{{$announcement->id}}"  >
+            <button    type="submit" class="btn btn-primary">apply</button>
+          </form>
           </div>
         </div>
       </div>

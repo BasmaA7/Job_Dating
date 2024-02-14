@@ -12,7 +12,7 @@ class Announcements extends Model
     protected $fillable=[
         "name",
         "descreption",
-        "skills",
+        
         "companie_id",
         "image",
 
@@ -20,5 +20,11 @@ class Announcements extends Model
 
     public function company(){
       return $this->belongsTo(Company::class);
+    }
+    public function skills(){
+      return $this->belongsToMany(Skill::class,'announcement_skill');
+    }
+    public function users(){
+      return $this->belongsToMany(User::class,'announcement_user');
     }
 }

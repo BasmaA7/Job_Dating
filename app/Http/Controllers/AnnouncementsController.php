@@ -6,6 +6,7 @@ use App\Models\Announcements;
 use App\Http\Requests\StoreAnnouncementsRequest;
 use App\Http\Requests\UpdateAnnouncementsRequest;
 use App\Models\Company;
+use App\Models\Skill;
 use Illuminate\View\ViewException;
 
 class AnnouncementsController extends Controller
@@ -28,9 +29,9 @@ class AnnouncementsController extends Controller
      */
     public function create()
     {
-
         $companies= Company::all();
-        return view('admin.announcements.create',compact('companies'));
+        $skills= Skill::all();
+        return view('admin.announcements.create',compact('companies','skills'));
     }
 
     /**
@@ -38,8 +39,9 @@ class AnnouncementsController extends Controller
      */
     public function store(StoreAnnouncementsRequest $request)
     {
-        Announcements::create($request->validated());
-        $validatedData = $request->validated();
+        $announcement = Announcements::create($request->validated());
+ 
+        $announcement->skills()->attach($request->input('skills'));
         
     if ($request->hasFile('image')) {
         $imagePath = $request->file('image')->store('announcement_images', 'public');
@@ -57,8 +59,10 @@ class AnnouncementsController extends Controller
    
      public function edit(Announcements $announcement)
      {
+        $allSkills = Skill::all(); 
+
         $companies = Company::all();
-         return view('admin.announcements.edit', compact('announcement','companies'));
+         return view('admin.announcements.edit', compact('announcement','allSkills','companies'));
      }
      
 
@@ -69,6 +73,8 @@ class AnnouncementsController extends Controller
     {
 
         $announcement->update($request->validated());
+        $announcement->skills()->sync($request->input('skills', []));
+
         return redirect()->route('announcements.index')
                          ->with('seccess','Announcement update successfully');
     }

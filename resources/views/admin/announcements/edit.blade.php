@@ -30,10 +30,21 @@
     <label for="exampleInputPassword1" class="form-label text-success-emphasis">Description :</label>
     <textarea name="descreption" class="form-control" id="exampleInputPassword1">{{$announcement->descreption }} </textarea>
   </div>
+ 
   <div class="mb-3">
-    <label for="exampleInputPassword1" class=" text-success-emphasis form-label "> Skills :</label>
-    <textarea name="skills" class="form-control" id="exampleInputPassword1">  {{$announcement->skills }} </textarea>
-  </div>
+    <label class="form-label">Compétences</label>
+    <div id="skills-container">
+        <select class="js-example-basic-multiple" name="skills[]" multiple="multiple">
+            @foreach ($allSkills as $skill)
+                <option value="{{ $skill->id }}" {{ in_array($skill->id, $announcement->skills->pluck('id')->toArray()) ? 'selected' : '' }}>
+                    {{ $skill->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+</div>
   <td>
     <select name="companie_id" class="form-control">
         @foreach($companies as $company)

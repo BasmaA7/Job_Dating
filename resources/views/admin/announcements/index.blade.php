@@ -34,7 +34,9 @@
                             <a href="{{route('announcements.create')}}" class="btn btn-primary">Add +</a>
                         </div>
        
-                      
+                    
+                      </div>
+               
                         <table class="table">
                            <thead>
                              <tr>
@@ -52,8 +54,11 @@
                                <td>{{$announcement->id}}</td>
                                <td>{{$announcement->name}}</td>
                                <td>{{ $announcement->descreption }}</td>
-                               <td>{{ $announcement->skills }}</td>
                                <td>
+                                @foreach ($announcement->skills as $skill)
+                                    {{ $skill->name }}@if (!$loop->last), @endif
+                                @endforeach
+                            </td>                               <td>
                                    @foreach($companies as $company)
                                        @if($company->id == $announcement->companie_id)
                                            {{ $company->name }}

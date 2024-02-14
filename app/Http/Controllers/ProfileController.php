@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
+ use Illuminate\Database\Eloquent\Collection;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 class ProfileController extends Controller
 {
     /**
@@ -19,14 +21,14 @@ class ProfileController extends Controller
 
     }
    
-    public function addskills(Request $request)
-{
+//     public function addskills(Request $request)
+// {
      
-    $user = User::findOrFail(auth()->user()->id);
-    $user->skills()->sync($request->input('skill_ids'));
-    return redirect()->route('home')
-    ->with('seccess','Announcement update successfully');
-}
+//     $user = User::findOrFail(auth()->user()->id);
+//     $user->skills()->sync($request->input('skill_ids'));
+//     return redirect()->route('home')
+//     ->with('seccess','Announcement update successfully');
+// }
 
     /**
      * Show the form for creating a new resource.
@@ -38,17 +40,37 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProfileRequest $request)
-    {
-        //
-    }
+    // public function add(Request $request, User $user)
+
+    // {
+    //     dd($request->input('skills'));
+    //     $user->skills()->sync($request->input('skills'));
+    //     return redirect()->back()->with('success', 'Skills added successfully.');
+    // }
+
+public function addSkills(Request $request)
+{
+    $user = auth()->user();
+
+    // Validez la requête selon vos besoins
+    $request->validate([
+        'skill_ids' => 'required|array',
+        'skill_ids.*' => 'exists:skills,id',
+    ]);
+
+    // Attachez les compétences sélectionnées à l'utilisateur
+    $user->skills()->sync($request->input('skill_ids'), false);
+
+    return redirect()->route('profile.show')->with('success', 'Compétences ajoutées avec succès.');
+}
+    
 
     /**
      * Display the specified resource.
      */
     public function show(User $profile)
     {
-        //
+        return view('apprenants.Profile');
     }
 
     /**
@@ -77,4 +99,25 @@ class ProfileController extends Controller
     {
         //
     }
+    public function apply(Request $request){
+        $user = auth()->user();
+    
+        // Assuming the relationship is one-to-many
+        foreach ($request->input("announcement_ids") as $announcementId) {
+            // Check if the announcement_id is already associated with the user
+            if ($user->announcements()->where('id', $announcementId)->exists()) {
+                // Display an error message
+                return redirect(route("home"))->withErrors(['error' => 'You have already applied for this announcement.']);
+            }
+    
+            // Attach the announcement_id without detaching existing ones
+            $user->announcements()->attach($announcementId);
+        }
+    
+        return redirect(route("home"));
+    }
+    
+    
+   
+    
 }
