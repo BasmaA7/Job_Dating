@@ -62,6 +62,7 @@ Route::controller(ImageController::class)->group(function(){
   Route::post('image-upload', 'store')->name('image.store');
 });
 
+Route::get('/home-with-announcements', [ProfileController::class, 'showMatchingAnnounce'])->name('home.with.announcements');
 
 
 

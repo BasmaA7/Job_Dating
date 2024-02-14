@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
  
- use Illuminate\Database\Eloquent\Collection;
+ use App\Models\Announcements;
+use Illuminate\Database\Eloquent\Collection;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
@@ -117,7 +118,17 @@ public function addSkills(Request $request)
         return redirect(route("home"));
     }
     
-    
+    public function showMatchingAnnounce()
+{
+    $userSkills = auth()->user()->skills()->pluck('id')->toArray();
+
+    $matchingAnnouncements = Announcements::whereHas('skills', function ($query) use ($userSkills) {
+        $query->whereIn('skills.id', $userSkills);
+    }, '>=', count($userSkills) * 0.5)->get();
+
+    return view('home', ['matchingAnnouncements' => $matchingAnnouncements]);
+}
+
    
     
 }
