@@ -4,12 +4,13 @@ use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\HistoriqueController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkillController;
 use App\Models\Company;
+use App\Http\Controllers\HistoriqueController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,6 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::resource('skills',SkillController::class);
 
-Route::resource('historique',HistoriqueController::class);
 Route::middleware(['role:admin'])->group(function () {
   Route::get('/announcement', 'AnnouncementsController@index');
   Route::get('/companie', 'CompanyController@index');
@@ -63,6 +63,8 @@ Route::controller(ImageController::class)->group(function(){
 });
 
 Route::get('/home-with-announcements', [ProfileController::class, 'showMatchingAnnounce'])->name('home.with.announcements');
+Route::get('/historique', [HistoriqueController::class, 'getMostPopulair']);
+
 
 
 

@@ -47,6 +47,7 @@ class AnnouncementsController extends Controller
         $imagePath = $request->file('image')->store('announcement_images', 'public');
         $validatedData['image_path'] = $imagePath;
     }
+    
         return redirect()->route('announcements.index')
         ->with('success','Announcement created successfully.');
     }

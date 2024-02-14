@@ -18,5 +18,6 @@ class SkillsSeeder extends Seeder
         skills::create(['name' => 'Js']);
         skills::create(['name' => 'Css']);
         skills::create(['name' => 'Laravel']);
+        
     }
 }
