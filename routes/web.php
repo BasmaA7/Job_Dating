@@ -63,8 +63,9 @@ Route::controller(ImageController::class)->group(function(){
 });
 
 Route::get('/home-with-announcements', [ProfileController::class, 'showMatchingAnnounce'])->name('home.with.announcements');
-Route::get('/historique', [HistoriqueController::class, 'getMostPopulair']);
 
+Route::resource('historique', HistoriqueController::class)->only(['index']);
+Route::resource('historique', HistoriqueController::class)->only(['getMostPopulair']);
 
 
 
